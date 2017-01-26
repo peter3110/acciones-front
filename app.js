@@ -1,6 +1,9 @@
 // require and instantiate express
 const app = require('express')()
 
+var express = require('express');
+var path = require('path');
+
 // fake posts to simulate a database
 const posts = [
   {
@@ -31,6 +34,7 @@ const posts = [
 
 // set the view engine to ejs
 app.set('view engine', 'ejs')
+app.use("/public", express.static(path.join(__dirname, 'public')));
 
 // blog home page
 app.get('/', (req, res) => {

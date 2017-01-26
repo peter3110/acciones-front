@@ -3,63 +3,21 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Node.js Blog</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <style>
-        body {
-            padding-top: 20px;
-            padding-bottom: 20px;
-        }
-
-        .jumbotron {
-          margin-top: 10px;
-        }
-
-        /* The side navigation menu */
-        .sidenav {
-            height: 100%; /* 100% Full-height */
-            width: 0; /* 0 width - change this with JavaScript */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Stay on top */
-            top: 0;
-            left: 0;
-            background-color: #111; /* Black*/
-            overflow-x: hidden; /* Disable horizontal scroll */
-            padding-top: 60px; /* Place content 60px from the top */
-            transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-        }
-
-        /* The navigation menu links */
-        .sidenav a {
-            text-decoration: none;
-            font-size: 20px;
-            color: #818181;
-            display: block;
-            transition: 0.3s
-        }
-
-        /* When you mouse over the navigation links, change their color */
-        .sidenav a:hover, .offcanvas a:focus{
-            color: #f1f1f1;
-        }
-
-        /* Position and style the close button (top right corner) */
-        .sidenav .closebtn {
-            position: absolute;
-            top: 0;
-            right: 25px;
-            font-size: 36px;
-            margin-left: 50px;
-        }
-
-        @media screen and (max-height: 450px) {
-        .sidenav {padding-top: 15px;}
-        .sidenav a {font-size: 18px;}
-    </style>
+    <link rel="stylesheet" href="/public/css/lib/bootstrap-3.3.6.css">
+    <link rel="stylesheet" href="/public/css/app.css">
+    <link rel="stylesheet" href="/public/css/map.css">
 </head>
 
 <body>
+    <div>
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+        
+        <div style="width:50%; margin:0 auto;">Trading 23/01/2017</div>
 
+        <%- include('partials/navbar') %>
+    </div>
+
+    <!-- Sidebar -->
     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
       <a href="#">About</a>
@@ -67,31 +25,42 @@
       <a href="#">Clients</a>
       <a href="#">Contact</a>
     </div>
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
 
-    <script>
-    function openNav() {
-        document.getElementById("mySidenav").style.width = "100px";
-    }
-
-    function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
-    }
-    </script>
-
-
-    <!-- -->
-    <div id="main">
+    <!-- Columns -->
+    <div id="main" class="container">
         <div class="container">
-            <%- include('partials/navbar') %>
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-4">asdf</div>
-                    <div class="col-xs-6">asdf</div>
+            <div class="row">
+                <!-- Columna izquierda -->
+                <div class="col-xs-4">
+                    En esta parte de la pagina se va a poder visualizar informacion y analisis
+                    de acuerdo a los paises / partes del mapa que se seleccionen
+                    <br><br><div id="infoOnClick"></div>
+                    <br><div id="infoOnMouseover"></div>
+                </div>
+    
+
+                <!-- Columna derecha -->
+                <div class="col-xs-6" id="map">
+                    En esta parte, estara el mapa, y un conjunto de opciones de entre las cuales
+                    el usuario podra elegir, para que en la parte izquierda de la pagina se
+                    muestre un analisis mas pormenorizado de acuerdo a sus necesidades
+                <br>
+                <button type="button" onclick="alert('Hello world!')">Click Me!</button>
+                <button type="button" onclick="alert('Hello world!')">Click Me 2!</button>
+                
                 </div>
             </div>
         </div>
+
     </div>
+
+    <!-- Scripts -->
+    <script src="/public/js/lib/d3/d3.v3.min.js"></script>
+    <script src="/public/js/lib/queue/queue.v1.min.js"></script>
+
+    <script src="/public/js/functions.js"></script>
+    <script src="/public/js/map.js"></script>
+    <script src="/public/js/navbar.js"></script>
 </body>
 
 </html>
