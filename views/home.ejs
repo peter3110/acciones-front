@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="/public/css/lib/bootstrap-3.3.6.css">
     <link rel="stylesheet" href="/public/css/app.css">
     <link rel="stylesheet" href="/public/css/map.css">
+    <link rel="stylesheet" href="/public/css/lib/leaflet.css">
+    <link rel="stylesheet" href="/public/css/lib/rangeslider.css">
 </head>
 
 <body>
@@ -32,35 +34,91 @@
             <div class="row">
                 <!-- Columna izquierda -->
                 <div class="col-xs-4">
+                <div class="scroller-left">
                     En esta parte de la pagina se va a poder visualizar informacion y analisis
                     de acuerdo a los paises / partes del mapa que se seleccionen
+
                     <br><br><div id="infoOnClick"></div>
                     <br><div id="infoOnMouseover"></div>
+                    
+
+                    <br><button type="button" onclick="sumSlider1()"> SUM </button>
+                    <br><button type="button" onclick="subtractSlider1()"> SUBTRACT </button>
+                    <br><div id="slider1"></div>
+                    
+                    <svg id="fillgauge1" width="0%" height="0" onclick="gauge1.update(NewValue());"></svg> 
+                    <svg id="fillgauge2" width="100%" height="100" onclick="gauge2.update(NewValue());"></svg>
+
+                    <br><div id="argentinamap"></div>
+
+                    <br><div id="linechart"></div>
+                    <br><div id="linechart2"></div>
+
+                </div>
                 </div>
     
 
                 <!-- Columna derecha -->
-                <div class="col-xs-6" id="map">
+                <div class="col-xs-6">
+                <div class = "scroller-right">
+
+                    <button type="button" onclick="displayWorldMap('#worldmap')"> Display World map </button>
+                    <button type="button" onclick="displayArgentinaMap('#argentinamap')"> Display Argentina map </button>
+                    <button type="button" onclick="displayHeatMap('heatmap')"> Display Heatmap </button>
+
+                    <button type="button" onclick="displayLinechart('#linechart')"> Linechart 1</button>
+                    <button type="button" onclick="displayLinechart('#linechart2')"> Linechart 2</button> 
+
+                    <button type="button" onclick="deleteLineChart('#linechart')"> delete Linechart 1</button>
+                    <button type="button" onclick="deleteLineChart('#linechart2')"> delete Linechart 2</button>
+
+                    <button type="button" onclick="dynamicLinechart('#dynamiclinechart')"> Create dynamicLinechart</button>
+
+                    <br>
                     En esta parte, estara el mapa, y un conjunto de opciones de entre las cuales
                     el usuario podra elegir, para que en la parte izquierda de la pagina se
                     muestre un analisis mas pormenorizado de acuerdo a sus necesidades
-                <br>
-                <button type="button" onclick="alert('Hello world!')">Click Me!</button>
-                <button type="button" onclick="alert('Hello world!')">Click Me 2!</button>
+                    
+                    <br>
+                    <div id="dynamiclinechart"></div>
+
+                    <br>
+                    <div id="worldmap"></div>
+
+                    <br>
+                    En esta parte, estara el Heatmap
+                    <div id="heatmap" style="width: 600px; height: 400px"></div>
                 
                 </div>
-            </div>
+                </div>
+        
         </div>
 
     </div>
 
     <!-- Scripts -->
+    <script src="/public/js/lib/jquery/jquery-3.1.1.min.js"></script>
     <script src="/public/js/lib/d3/d3.v3.min.js"></script>
     <script src="/public/js/lib/queue/queue.v1.min.js"></script>
+    <script src="/public/js/lib/d3.geo.projection.v0.min.js"></script>
+    <script src="/public/js/lib/topojson.v1.min.js"></script>
+    <script src="/public/js/lib/leaflet.js"></script>
+    <script src="/public/js/lib/leaflet-heat.js"></script>
+    <script src="/public/js/lib/rangeslider.min.js"></script>
 
-    <script src="/public/js/functions.js"></script>
+    <!-- Scripts mios -->
+    <script src="/public/js/variables.js"></script>
+    <script src="/public/js/unu_sliders.js"></script>
+    <script src="/public/js/liquidFillGauge.js"></script>
+    <script src="/public/js/gauges.js"></script>
+    <script src="/public/js/argentina_map.js"></script>
+    <script src="/public/js/heat_map.js"></script>
+
+    <script src="/public/js/dynamiclinechart.js"></script>
+    <script src="/public/js/linechart.js"></script>
     <script src="/public/js/map.js"></script>
     <script src="/public/js/navbar.js"></script>
+    <script src="/public/js/functions.js"></script>
 </body>
 
 </html>

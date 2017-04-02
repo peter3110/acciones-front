@@ -9,8 +9,11 @@
   "author": "Fady Makram <fady@coligo.io>",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.3",
     "ejs": "^2.5.5",
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "hdb": "0.3.*",
+    "rangeslider.js": "^2.3.0"
   },
   "keywords": []
 }
