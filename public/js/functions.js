@@ -14,3 +14,7 @@ function displayInfoAirportOnClick(city) {
 function displayLinechart(xs) {
 	LineChart(xs)
 }
+
+function displayAccionesLinechart(xs) {
+	AccionesLineChart(xs)
+}

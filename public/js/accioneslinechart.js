@@ -1,8 +1,4 @@
-function deleteLineChart(where) {
-    d3.select(where +" svg").remove()
-}
-
-function LineChart(where) {
+function AccionesLineChart(where) {
     // Init
     d3.select(where +" svg").remove()
 
@@ -12,7 +8,7 @@ function LineChart(where) {
     height = 227 - margin.top - margin.bottom;
  
     // Parse the date / time
-    var parseDate = d3.time.format("%d-%b-%y").parse;
+    var parseDate = d3.time.format("%Y-%m-%d").parse;
      
     // Set the ranges
     var x = d3.time.scale().range([0, width]);
@@ -27,8 +23,8 @@ function LineChart(where) {
      
     // Define the line
     var valueline = d3.svg.line()
-        .x(function(d) { return x(d.date); })
-        .y(function(d) { return y(d.close); });
+        .x(function(d) { return x(d.fecha); })
+        .y(function(d) { return y(d.cierre); });
         
     // Adds the svg canvas
     var svg = d3.select(where)
@@ -39,15 +35,18 @@ function LineChart(where) {
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
      
     // Get the data
-    d3.csv("/public/data/data.csv", function(error, data) {
+    $.get( "https://acciones-backend.herokuapp.com/getData/", function( data ) {
+        data = data.points[0];
+        console.log(data);
+        
         data.forEach(function(d) {
-            d.date = parseDate(d.date);
-            d.close = +d.close;
+            d.fecha  = +parseDate(d.fecha);
+            d.cierre = +d.cierre;
         });
-     
+         
         // Scale the range of the data
-        x.domain(d3.extent(data, function(d) { return d.date; }));
-        y.domain([0, d3.max(data, function(d) { return d.close; })]);
+        x.domain(d3.extent(data, function(d) { return d.fecha; }));
+        y.domain([0, d3.max(data, function(d) { return d.cierre; })]);
      
         // Add the valueline path.
         svg.append("path")  
@@ -67,6 +66,5 @@ function LineChart(where) {
         svg.append("g")     
             .attr("class", "y axis")
             .call(yAxis);
-     
     });
 }
