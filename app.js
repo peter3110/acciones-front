@@ -94,12 +94,6 @@ app.get('/slider1_server', (req, res, next) => {
   return res.json({val: value_slider1_server});
 })
 
-app.get('/getData', (req, res, next) => {
-  $.get( "https://acciones-backend.herokuapp.com/getData/", function( data ) {
-      return data;
-  });  
-})
-
 
 // blog post
 app.get('/post/:id', (req, res, next) => {
